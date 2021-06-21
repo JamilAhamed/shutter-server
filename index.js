@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 
 const MongoClient = require('mongodb').MongoClient;
 const { ObjectId } = require('bson');
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.gpn2l.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.q1a8q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
@@ -125,7 +125,6 @@ client.connect(err => {
                 res.send(documents)
             })
     })
-
     // addAdmin
     app.post('/addAdmin', (req, res) => {
         const email = req.body;
@@ -134,15 +133,14 @@ client.connect(err => {
                 res.send(result.insertedCount > 0)
             })
     })
-    // geAdmin
+    // getAdmin
     app.get('/isAdmin', (req, res) => {
         const email = req.query.email;
         adminCollection.find({ email: email })
             .toArray((err, documents) => {
                 res.send(documents.length > 0)
             })
-
-    })
+    })     
 
     // addOrders
     app.post('/addOrder', (req, res) => {
@@ -182,7 +180,7 @@ client.connect(err => {
         })
     })
     
-    // footerInser
+    // footerInsert
     app.get('/footer', (req, res) => {
         footerCollection.find({})
             .toArray((err, documents) => {
