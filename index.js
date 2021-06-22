@@ -91,7 +91,7 @@ client.connect(err => {
             })
     })
 
-    // get servicesbyID
+    // get servicesById
     app.get('/serviceById/:id', (req, res) => {
         const id = req.params.id;
         serviceCollection.find({_id:ObjectId(`${id}`)})
